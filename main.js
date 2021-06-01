@@ -1,4 +1,4 @@
-var affirmations = [
+let affirmations = [
   "I forgive myself and set myself free.",
   "I believe I can be all that I want to be.",
   "I am in the process of becoming the best version of myself.",
@@ -14,7 +14,7 @@ var affirmations = [
   "I manifest perfect health by making smart choices.",
 ];
 
-var mantras = [
+let mantras = [
   "Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.",
   "Don't let yesterday take up too much of today.",
   "Every day is a second chance.",
@@ -32,29 +32,27 @@ var mantras = [
   "I am the sky, the rest is weather.",
 ];
 
-let msgForm = document.getElementById("msg-form");
+// When a user selects a message option and then clicks the “Receive Message” button, the user sees a random message from the list of possible messages for that category
+// When the message appears, the meditation icon disappears from the message area
 
-let submitBtn = document.getElementById("submit-btn");
+// let msgBtn = document.querySelector(".msg-btn");
+let btn = document.getElementById("btn");
+let affirmation = document.getElementById("affirmation");
+let mantra = document.getElementById("mantra");
+// let msg = document.querySelector(".message");
+let msgContainer = document.querySelector(".msg-container");
 
-let affirmationBtn = document.getElementById("affirmation");
-let mantraBtn = document.getElementById("mantra");
+btn.addEventListener("click", showMessage);
 
-function onClick() {}
-
-msgForm.addEventListener("submit", function (e) {
-  console.log("form submitted", e);
-
-  e.preventDefault();
-  const choices = document.querySelectorAll("input[name]");
-  console.log(choices);
-
-  recieveMessage();
-});
-
-function recieveMessage() {
-  console.log("message recieved");
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 }
 
-// When a user selects a message option and then clicks the “Receive Message” button, the user sees a random message from the list of possible messages for that category
-
-// When the message appears, the meditation icon disappears from the message area
+function showMessage(e) {
+  e.preventDefault(); // not doing anything?
+  affirmation.checked
+    ? (msgContainer.innerHTML = affirmations[getRandomIndex(affirmations)])
+    : (msgContainer.innerHTML = mantras[getRandomIndex(mantras)]);
+  affirmation.checked = false;
+  mantra.checked = false;
+}
